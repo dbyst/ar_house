@@ -105,6 +105,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         currentNode = officeNode
         
         sceneView.scene.rootNode.addChildNode(officeNode)
+        
+        let originalScale = officeNode.scale
+        let newScale = SCNVector3Make(originalScale.x, op0, originalScale.z)
+        officeNode.scale = newScale
+        SCNTransaction.begin()
+        SCNTransaction.animationDuration = 2
+        officeNode.scale = originalScale
+        
+        SCNTransaction.commit()
     }
     
     func createOfficeNode() -> SCNNode {
