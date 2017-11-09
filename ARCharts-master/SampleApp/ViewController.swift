@@ -187,7 +187,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     private func setupHighlightGesture() {
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        let longPressRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
     
@@ -285,11 +285,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @objc func handleLongPress(_ gestureRecognizer: UITapGestureRecognizer) {
         let longPressLocation = gestureRecognizer.location(in: self.view)
-        let selectedNode = self.sceneView.hitTest(longPressLocation, options: nil).first?.node
         
-        if selectedNode == currentNode {
-            print("HIT")
-        }
+        
+        var hitTestOptions = [SCNHitTestOption: Any]()
+        hitTestOptions[SCNHitTestOption.categoryBitMask] = 2
+        let selectedNode = self.sceneView.hitTest(longPressLocation, options: hitTestOptions).first?.node
+        
+        print(selectedNode?.name)
     }
     
     @objc func handleTapToUnhighlight(_ gestureRecognizer: UITapGestureRecognizer) {
