@@ -58,6 +58,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         setupFocusSquare()
         setupRotationGesture()
         setupHighlightGesture()
+        setupPinchGesture()
         
         addLightSource(ofType: .omni)
     }
@@ -179,13 +180,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     private func setupRotationGesture() {
-        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(handleRotation))
-        self.view.addGestureRecognizer(rotationGestureRecognizer)
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(pan:)))
+        self.view.addGestureRecognizer(panRecognizer)
+//        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(handleRotation))
+//        self.view.addGestureRecognizer(rotationGestureRecognizer)
     }
     
     private func setupHighlightGesture() {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         self.view.addGestureRecognizer(longPressRecognizer)
+    }
+    
+    private func setupPinchGesture() {
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(gestureRecognize:)))
+        self.view.addGestureRecognizer(pinchGesture)
     }
     
     // MARK: - ARSCNViewDelegate
@@ -234,17 +242,43 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     private var startingRotation: Float = 0.0
     
-    @objc func handleRotation(rotationGestureRecognizer: UIRotationGestureRecognizer) {
+    private var startScale: Float = 1.0
+    private var lastScale: Float = 1.0
+    @objc func handlePinch(gestureRecognize: UIPinchGestureRecognizer) {
+        if gestureRecognize.numberOfTouches == 2 {
+            guard let currentNode = currentNode else {
+                return
+            }
+            if (gestureRecognize.state == .began){
+                startScale = Float(gestureRecognize.scale)
+            } else if (gestureRecognize.state == .changed) {
+                lastScale = Float(gestureRecognize.scale)
+                let zoom = lastScale - startScale
+                let scale = currentNode.scale
+                let newScale = SCNVector3Make(scale.x + zoom, scale.y + zoom, scale.z + zoom)
+                currentNode.scale = newScale
+                startScale = lastScale
+            }
+        }
+    }
+    
+    @objc func handlePan(pan: UIPanGestureRecognizer) {
+        let translation = pan.translation(in: view)
+        print(translation)
+        
         guard let currentNode = currentNode,
             let pointOfView = sceneView.pointOfView,
-            sceneView.isNode(currentNode, insideFrustumOf: pointOfView) == true else {
-            return
+            sceneView.isNode(currentNode, insideFrustumOf: pointOfView) == true,
+            pan.numberOfTouches == 1
+            else {
+                return
         }
         
-        if rotationGestureRecognizer.state == .began {
+        if pan.state == .began {
             startingRotation = currentNode.eulerAngles.y
-        } else if rotationGestureRecognizer.state == .changed {
-            self.currentNode?.eulerAngles.y = startingRotation - Float(rotationGestureRecognizer.rotation)
+        } else if pan.state == .changed {
+            let translation = pan.translation(in: view).x / 120
+            self.currentNode?.eulerAngles.y = startingRotation + Float(translation)
         }
     }
     
