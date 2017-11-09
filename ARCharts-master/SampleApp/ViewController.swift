@@ -253,8 +253,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 startScale = Float(gestureRecognize.scale)
             } else if (gestureRecognize.state == .changed) {
                 lastScale = Float(gestureRecognize.scale)
-                let zoom = lastScale - startScale
+                let zoom = (lastScale - startScale) * 0.1
                 let scale = currentNode.scale
+                if scale.x < 0.02 && zoom < 0 { return }
                 let newScale = SCNVector3Make(scale.x + zoom, scale.y + zoom, scale.z + zoom)
                 currentNode.scale = newScale
                 startScale = lastScale
@@ -277,7 +278,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if pan.state == .began {
             startingRotation = currentNode.eulerAngles.y
         } else if pan.state == .changed {
-            let translation = pan.translation(in: view).x / 120
+            let translation = pan.translation(in: view).x / 200
             self.currentNode?.eulerAngles.y = startingRotation + Float(translation)
         }
     }
