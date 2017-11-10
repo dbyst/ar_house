@@ -290,8 +290,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         var hitTestOptions = [SCNHitTestOption: Any]()
         hitTestOptions[SCNHitTestOption.categoryBitMask] = 2
         let selectedNode = self.sceneView.hitTest(longPressLocation, options: hitTestOptions).first?.node
-        
-        print(selectedNode?.name)
+        if (selectedNode?.name == "iOSRoom") {
+            present(ListOfPeopleVC(), animated: true, completion: nil)
+        }
     }
     
     @objc func handleTapToUnhighlight(_ gestureRecognizer: UITapGestureRecognizer) {

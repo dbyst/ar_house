@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20D557D31F1C0E0800924685 /* DataSample_0.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20D557D01F1C0C3D00924685 /* DataSample_0.csv */; };
 		3F106B231FB4EDC500B9975B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F106B221FB4EDC500B9975B /* art.scnassets */; };
+		6132777E1FB5258100CF5719 /* ListOfPeopleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6132777D1FB5258100CF5719 /* ListOfPeopleVC.swift */; };
 		C36287461F0E084800B6598D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36287451F0E084800B6598D /* AppDelegate.swift */; };
 		C362874A1F0E084800B6598D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36287491F0E084800B6598D /* ViewController.swift */; };
 		C362874D1F0E084800B6598D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C362874B1F0E084800B6598D /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		20D557D01F1C0C3D00924685 /* DataSample_0.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataSample_0.csv; sourceTree = "<group>"; };
 		3F106B221FB4EDC500B9975B /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		6132777D1FB5258100CF5719 /* ListOfPeopleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfPeopleVC.swift; sourceTree = "<group>"; };
 		C36287421F0E084800B6598D /* ARChartsSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARChartsSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36287451F0E084800B6598D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C36287491F0E084800B6598D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				C362874E1F0E084800B6598D /* Assets.xcassets */,
 				C36287501F0E084800B6598D /* LaunchScreen.storyboard */,
 				C36287531F0E084800B6598D /* Info.plist */,
+				6132777D1FB5258100CF5719 /* ListOfPeopleVC.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				C3D4C4531F174B29001116AC /* FocusSquare.swift in Sources */,
 				C362874A1F0E084800B6598D /* ViewController.swift in Sources */,
 				C36287461F0E084800B6598D /* AppDelegate.swift in Sources */,
+				6132777E1FB5258100CF5719 /* ListOfPeopleVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
