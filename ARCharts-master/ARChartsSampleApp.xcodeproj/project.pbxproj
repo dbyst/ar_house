@@ -114,6 +114,7 @@
 				20D557CF1F1C0C3D00924685 /* Data */,
 				C36287451F0E084800B6598D /* AppDelegate.swift */,
 				C36287491F0E084800B6598D /* ViewController.swift */,
+				6132777D1FB5258100CF5719 /* ListOfPeopleVC.swift */,
 				C362874B1F0E084800B6598D /* Main.storyboard */,
 				C3BD6FB11F1346820042479D /* Utilities.swift */,
 				C3D4C4521F174A97001116AC /* FocusSquare.swift */,
@@ -121,7 +122,6 @@
 				C362874E1F0E084800B6598D /* Assets.xcassets */,
 				C36287501F0E084800B6598D /* LaunchScreen.storyboard */,
 				C36287531F0E084800B6598D /* Info.plist */,
-				6132777D1FB5258100CF5719 /* ListOfPeopleVC.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";

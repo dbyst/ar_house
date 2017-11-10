@@ -291,7 +291,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         hitTestOptions[SCNHitTestOption.categoryBitMask] = 2
         let selectedNode = self.sceneView.hitTest(longPressLocation, options: hitTestOptions).first?.node
         if (selectedNode?.name == "iOSRoom") {
-            present(ListOfPeopleVC(), animated: true, completion: nil)
+            performSegue(withIdentifier: "presentList", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let listVC = segue.destination as? ListOfPeopleVC {
+            listVC.title = "iOS Room"
         }
     }
     

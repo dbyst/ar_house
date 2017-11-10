@@ -25,7 +25,10 @@ class ListOfPeopleVC: UITableViewController {
 
         tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.identifier())
     }
-
+    @IBAction func doneAction(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier(), for: indexPath)
         cell.textLabel?.text = peopleList[indexPath.row]
